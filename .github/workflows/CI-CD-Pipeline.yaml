@@ -35,6 +35,12 @@ jobs:
         push: true
         tags: parshantjagwani/client-serverapp-server:latest
 
+    - name: Upload Docker Compose
+      uses: actions/upload-artifact@v2
+      with:
+        name: docker-compose
+        path: ./docker-compose.yml
+
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -45,10 +51,10 @@ jobs:
       with:
         fetch-depth: 0
 
-#    - name: Download Docker Compose
-#      uses: actions/download-artifact@v2
-#      with:
-#        name: docker-compose
+    - name: Download Docker Compose
+      uses: actions/download-artifact@v2
+      with:
+        name: docker-compose
 
     - name: Update Docker Compose with latest images
       run: |
@@ -75,6 +81,4 @@ jobs:
     - name: Send deployment notification
       uses: rtCamp/action-slack-notify@v2
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      with:
-        args: '{"text": "Client and Server  deployed successfully: ${{ github.run_id }}"}'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEB }}
