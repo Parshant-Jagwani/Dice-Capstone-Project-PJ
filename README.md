@@ -169,4 +169,30 @@ To integrate the Slack webhook, Follow Instructions from: [Slack_webhooks](https
 1. Include a README file in each repository with all the necessary information to set up the entire infrastructure and pipeline.
 1. Document each step, including prerequisites, installation and configuration instructions,
 usage examples, and troubleshooting tips.
+
+## SERVER OUT PUT
+
+**[GRAFANA](http://54.236.218.136:3000/) PASSWORD: kBP8Kft623rYwXG USER: admin**
+
+![GRAFANA](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Server-Grafana.png)
+
+**[PROMETHEUS](http://54.236.218.136:9090/graph)**
+
+![PROMOTHEUS](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Server-Prometheus.png)
+
+**[SERVER](http://54.196.238.114:5000)**
+**SERVER-IP 54.236.218.136**
+
+## CLIENT OUT PUT
+
+**[GRAFANA](http://54.196.238.114:3000/) PASSWORD: kBP8Kft623rYwXG USER: admin**
+
+![GRAFANA](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Client-Grafana.png)
+
+**[PROMETHEUS](http://54.196.238.114:9090/graph)**
+
+![PROMOTHEUS](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Client-Prometheus.png)
+
+**[CLIENT IP](http://54.196.238.114:8000)**
+**CLIENT-IP 54.196.238.114**	
 ---
