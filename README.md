@@ -1,32 +1,34 @@
 # Part 1: Application and Container Building
 #### In this part, you will build two containers using Docker, one for the server and another for the client.
-### Server:
-1. Choose an appropriate base image from the Official Images list.
-1. Create a Dockerfile for the server container with the following specifications:
-1. Use a volume named "servervol" and mount it at "/serverdata" in the container.
-1. Install necessary packages and dependencies required for your server application.
-1. Write a server application in your preferred language that does the following:
-1. Creates a 1KB file with random text data in the "/serverdata" directory.
-1. Sends the file and its checksum to the client.
-1. Use Docker Compose to define and run the server container.
-### Client:
-1.  Choose an appropriate base image from the Official Images list.
-1.  Create a Dockerfile for the client container with the following specifications:
-1.  Use a volume named "clientvol" and mount it at "/clientdata" in the container.
-1.  Install necessary packages and dependencies required for your client application.
-1.  Write a client application in your preferred language that does the following:
-1.  Connects to the server and receives the file.
-1.  Saves the received file in the "/clientdata" directory.
-1.  Verifies the file's integrity by checking the received checksum.
-1.  Use Docker Compose to define and run the client container.
-#### Create two separate Git repositories to host the client and server codebases.
+### Server Build up:
+
+For Building Up the Server I had written
+
+1. [Dockerfile](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/server/Dockerfile), 
+2. [Server.py](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/server/server.py) 
+3. [requirements.txt](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/server/server.py)  and 
+4. [Docker-compose](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/server/docker-compose) 
+
+Which will be used will deploying the infra.
+
+Composing docker Image and Pushing it to Docker Hub
+
+### Client Build up:
+
+For Building Up the Server I had written
+
+1. [Dockerfile](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/client/Dockerfile), 
+2. [Server.py](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/client/server.py) 
+3. [requirements.txt](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/client/client.py)  and 
+4. [Docker-compose](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/client/docker-compose) 
+
 ---
 
 # Part 2: Creating VMs, Infra as a Code (IaC)
 
 ### ***1.*** Prerequisites for run Infra as a Code (IaC)
 ### 2. Use Terraform for infrastructure automation. Place your Terraform scripts 
-#### *To use this Terraform code [main.tf](main.tf), follow these steps:*
+#### *To use this Terraform code [ec2-Provession.tf](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Terraform/ec2-Provession.tf), follow these steps:*
 
  **Step 1:** `terraform init`
 
@@ -41,12 +43,13 @@
 # Part 3: Setting up Monitoring Stack using Prometheus and Grafana:
 
 ### 1 Create a new directory called "Monitoring-Stack" 
-### 2. For Essential Tools Installation  Refer to: [Essentials_Installation](https://)
+### 2. For Essential Tools Installation  Refer to: [Essentials_Installation]([https://](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Monitoring-Stack/Essentials_Installation.sh)
+
 ### 3. While Setting up the Monitoring-Stack , we need to install Prometheus , Grafana and  Node Exporter. To achieve this, follow these steps :
 
-   **_a.  Configure Grafana by [docker-compose.yaml]() in [Grafana folder]()_**
+   **_a.  Configure Grafana by [docker-compose.yaml](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/tree/main/Monitoring-Stack/grafana/docker-compose.yaml) in [Grafana folder](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/tree/main/Monitoring-Stack/grafana)_**
 
-   **_b.  Configure Prometheus to scrape metrics [docker-compose.yaml]()  and [prometheus.yaml]() in [prometheus folder]()_**
+   **_b.  Configure Prometheus to scrape metrics [docker-compose.yaml](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/tree/main/Monitoring-Stack/prometheus/docker-compose.yaml)  and [prometheus.yaml](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/tree/main/Monitoring-Stack/prometheus) in [prometheus folder](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/tree/main/Monitoring-Stack/prometheus/prometheus.yaml)_**
    
    **_c.  Configure Node-Exporter_**
 
@@ -61,7 +64,7 @@
 
 **Here is GitHub Actions workflow for the both Repositories**
 
-*.github/workflows/cicd.yaml:*
+*[.github/workflows/cicd.yaml:](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/.github/workflows/CI-CD-Pipeline.yaml)*
 
 ```
 name: CI/CD Pipeline
