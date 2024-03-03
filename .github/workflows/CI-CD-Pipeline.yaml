@@ -81,5 +81,12 @@ jobs:
     steps:
     - name: Send deployment notification
       uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEB }}
+          steps:
+    - name: Send deployment notification
+      uses: rcook/slack-webhook-action@master
+      with:
+        payload: |
+          {
+            "text": "Server deployed successfully: ${{ github.run_id }}"
+          }
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
