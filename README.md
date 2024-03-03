@@ -13,7 +13,7 @@ Which will be used will deploying the infra.
 
 Composing docker Image and Pushing it to Docker Hub
 
-### Client Build up:
+### [Client Build up](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/client/README.md):
 
 For Building Up the Server I had written
 
@@ -24,7 +24,7 @@ For Building Up the Server I had written
 
 ---
 
-# Part 2: Creating VMs, Infra as a Code (IaC)
+# Part 2: Creating VMs, [Infra as a Code (IaC)](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Terraform/README.md)
 
 ### ***1.*** Prerequisites for run Infra as a Code (IaC)
 ### 2. Use Terraform for infrastructure automation. Place your Terraform scripts 
@@ -40,7 +40,7 @@ For Building Up the Server I had written
 
 ---
 
-# Part 3: Setting up Monitoring Stack using Prometheus and Grafana:
+# Part 3: Setting up [Monitoring Stack]((https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Monitoring-Stack/README.md)) using Prometheus and Grafana:
 
 ### 1 Create a new directory called "Monitoring-Stack" 
 ### 2. For Essential Tools Installation  Refer to: [Essentials_Installation](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Monitoring-Stack/Essentials_Installation.sh)
