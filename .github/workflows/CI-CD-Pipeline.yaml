@@ -47,10 +47,7 @@ jobs:
         fetch-depth: 0
 
     - name: Pulling Server and Client From Docker Hub
-      uses: actions/download-artifact@v2
-      with:
-        name: Pull Client image from DockerHub
-        run: |
+      run: |
           docker pull parshantjagwani/client:latest
           docker pull parshantjagwani/server:latest
 
