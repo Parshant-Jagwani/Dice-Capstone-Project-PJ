@@ -15,20 +15,25 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Ensure Dockerfiles are present in client and server directories
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
     - name: Build and push Docker image for Client
       uses: docker/build-push-action@v2
       with:
-        context: ./client/
+        context: ./client/docker-compose.yaml
         push: true
-        tags: parshantjagwani/client:latest
+        tags: parshantjagwani/client-serverapp-client:latest
 
     - name: Build and push Docker image for Server
       uses: docker/build-push-action@v2
       with:
-        context: ./server/
+        context: ./server/docker-compose.yaml
         push: true
-        tags: parshantjagwani/server:latest
+        tags: parshantjagwani/client-serverapp-server:latest
 
     - name: Upload Docker Compose
       uses: actions/upload-artifact@v2
@@ -46,28 +51,28 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Pulling Server and Client From Docker Hub
-      run: |
-          docker pull parshantjagwani/client:latest
-          docker pull parshantjagwani/server:latest
+    - name: Download Docker Compose
+      uses: actions/download-artifact@v2
+      with:
+        name: docker-compose
+        path: ./docker-compose.yml
 
     - name: Update Docker Compose with latest images
       run: |
-        sed -i 's|parshantjagwani/client:v2.*|parshantjagwani/client:latest|' docker-compose.yml
-        sed -i 's|parshantjagwani/server:v2.*|parshantjagwani/server:latest|' docker-compose.yml
+        sed -i 's|parshantjagwani/client-serverapp-client:.*|parshantjagwani/client-serverapp-client:latest|' docker-compose.yml
+        sed -i 's|parshantjagwani/client-serverapp-server:.*|parshantjagwani/client-serverapp-server:latest|' docker-compose.yml
 
-    # Configure EC2-VMs as private Git runners and use AWS credentials for deploying
     - name: Deploy to Client VM
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws ssm send-command --document-name "AWS-RunShellScript" --instance-ids ${{ secrets.CLIENT_INSTANCE_ID }} $(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --output text) --commands "docker-compose up --build --remove-orphans"
+        aws ssm send-command --document-name "AWS-RunShellScript" --${{ secrets.CLIENT_INSTANCE_ID }} $(aws ec2 describe-instances commands="docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} && docker-compose -f docker-compose.yml up --build --remove-orphans"
 
     - name: Deploy to Server VM
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws ssm send-command --document-name "AWS-RunShellScript" --instance-ids ${{ secrets.SERVER_INSTANCE_ID }} $(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --output text) --commands "docker-compose up --build --remove-orphans"
+        aws ssm send-command --document-name "AWS-RunShellScript" --${{ secrets.SERVER_INSTANCE_ID }} $(aws ec2 describe-instances commands="docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} && docker-compose -f docker-compose.yml up --build --remove-orphans"
 
   notify:
     needs: deploy
@@ -76,6 +81,9 @@ jobs:
     steps:
     - name: Send deployment notification
       uses: rtCamp/action-slack-notify@v2
+          steps:
+    - name: Send deployment notification
+      uses: rcook/slack-webhook-action@master
       with:
         payload: |
           {
