@@ -1,6 +1,6 @@
 # Part 1: Application and Container Building
 #### In this part, you will build two containers using Docker, one for the server and another for the client.
-### Server Build up:
+### [Server Build up](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/server/README.md):
 
 For Building Up the Server I had written
 
@@ -43,7 +43,7 @@ For Building Up the Server I had written
 # Part 3: Setting up Monitoring Stack using Prometheus and Grafana:
 
 ### 1 Create a new directory called "Monitoring-Stack" 
-### 2. For Essential Tools Installation  Refer to: [Essentials_Installation]([https://](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Monitoring-Stack/Essentials_Installation.sh)
+### 2. For Essential Tools Installation  Refer to: [Essentials_Installation](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Monitoring-Stack/Essentials_Installation.sh)
 
 ### 3. While Setting up the Monitoring-Stack , we need to install Prometheus , Grafana and  Node Exporter. To achieve this, follow these steps :
 
