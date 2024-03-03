@@ -51,11 +51,11 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Download Docker Compose
-      uses: actions/download-artifact@v2
-      with:
-        name: docker-compose
-        path: ./docker-compose.yml
+#    - name: Download Docker Compose
+#      uses: actions/download-artifact@v2
+#      with:
+#        name: docker-compose
+#        path: ./docker-compose.yml
 
     - name: Update Docker Compose with latest images
       run: |
