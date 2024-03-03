@@ -45,10 +45,10 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Download Docker Compose
-      uses: actions/download-artifact@v2
-      with:
-        name: docker-compose
+#    - name: Download Docker Compose
+#      uses: actions/download-artifact@v2
+#      with:
+#        name: docker-compose
 
     - name: Update Docker Compose with latest images
       run: |
