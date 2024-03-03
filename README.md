@@ -172,7 +172,7 @@ usage examples, and troubleshooting tips.
 
 ## SERVER OUT PUT
 
-**[GRAFANA](http://54.236.218.136:3000/) PASSWORD: kBP8Kft623rYwXG USER: admin**
+**[GRAFANA](http://54.236.218.136:3000/)**
 
 ![GRAFANA](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Server-Grafana.png)
 
@@ -185,7 +185,7 @@ usage examples, and troubleshooting tips.
 
 ## CLIENT OUT PUT
 
-**[GRAFANA](http://54.196.238.114:3000/) PASSWORD: kBP8Kft623rYwXG USER: admin**
+**[GRAFANA](http://54.196.238.114:3000/)**
 
 ![GRAFANA](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Client-Grafana.png)
 
