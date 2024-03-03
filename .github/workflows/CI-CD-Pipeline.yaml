@@ -24,14 +24,14 @@ jobs:
     - name: Build and push Docker image for Client
       uses: docker/build-push-action@v2
       with:
-        context: ./client
+        context: ./client/docker-compose.yaml
         push: true
         tags: parshantjagwani/client-serverapp-client:latest
 
     - name: Build and push Docker image for Server
       uses: docker/build-push-action@v2
       with:
-        context: ./server
+        context: ./server/docker-compose.yaml
         push: true
         tags: parshantjagwani/client-serverapp-server:latest
 
