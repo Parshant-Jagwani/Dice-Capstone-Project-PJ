@@ -162,6 +162,7 @@ To integrate the Slack webhook, Follow Instructions from: [Slack_webhooks](https
 ---
 **Configure the corresponding VMs as private Git runners.**
 ---
+![private Git runners](https://github.com/Parshant-Jagwani/Dice-Capstone-Project-PJ/blob/main/Images/Repo-Secrets.png)
 ---
 # Part 5: Documentation 
 
