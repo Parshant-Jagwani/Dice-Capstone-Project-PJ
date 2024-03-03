@@ -4,16 +4,16 @@ provider "aws" {
 
 # Create VPC
 resource "aws_vpc" "main-vpc" {
-  cidr_block = "10.10.0.0/16"
+  cidr_block = "172.31.0.0/16"
   tags = {
-    Name = "main-vpc"
+    Name = "Main-VPC"
   }
 }
 
 # Create Subnet
 resource "aws_subnet" "main" {
   vpc_id = aws_vpc.main-vpc.id
-  cidr_block = "10.10.1.0/24"
+  cidr_block = "172.31.1.0/24"
 
   tags = {
     Name = "main-subnet"
@@ -25,7 +25,7 @@ resource "aws_internet_gateway"  "gw" {
   vpc_id = aws_vpc.main-vpc.id
 
   tags = {
-    Name = "main-igw"
+    Name = "Main-IGW"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_route_table" "main-route" {
       gateway_id = aws_internet_gateway.gw.id 
   }
   tags = {
-    Name = "main-rtb"
+    Name = "Main-RTB"
   }
 }
 
@@ -51,8 +51,8 @@ resource "aws_route_table_association" "main-rta" {
 
 # Aws_Security_Group 
 resource "aws_security_group" "main-sg" { 
-  name        = "allow_required_ports"
-  description = "Allow required ports inbound traffic"
+  name        = "Devops-Stack-Sg"
+  description = "Devops-Stack-Sg"
   vpc_id      = aws_vpc.main-vpc.id
 
   ingress  {
@@ -79,6 +79,31 @@ resource "aws_security_group" "main-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "HTTPS"
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
+
+  ingress {
+    description = "Prometheus UI"
+    from_port = 9000
+    to_port = "9100"
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
+
+  ingress {
+    description = "for Grafana UI"
+    from_port = 3020
+    to_port = 3120
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+
+  }
+
   egress  {
     from_port   = 0
     to_port     = 0
@@ -86,51 +111,34 @@ resource "aws_security_group" "main-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags ={
-    Name = "allow_required_ports"
+    Name = "Devops-Stack--Sg"
   }
 }
 
-/* AMI lookup
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-LTS-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["363387917335"] # Canonical
-}
-
-*/
-
-# EC2 resources for server
-resource "aws_instance" "server" {
+# EC2 resources for Server
+resource "aws_instance" "Server" {
   ami           = "ami-0440d3b780d96b29d"
   instance_type = "t2.micro"
-  key_name      = "2-teir-app-kp"
+  key_name      = "devops-stack-kp"
   subnet_id     = aws_subnet.main.id
   vpc_security_group_ids = [aws_security_group.main-sg.id]
+  associate_public_ip_address = true
 
   tags = {
-    Name = "server"
+    Name = "Server"
   }
 }
 
-# EC2 resources for client
-resource "aws_instance" "client" {
+# EC2 resources for Client
+resource "aws_instance" "Client" {
   ami           = "ami-0440d3b780d96b29d"
   instance_type = "t2.micro"
-  key_name      = "2-teir-app-kp"
+  key_name      = "devops-stack-kp"
   subnet_id     = aws_subnet.main.id
   vpc_security_group_ids = [aws_security_group.main-sg.id]
+  associate_public_ip_address = true
 
   tags = {
-    Name = "client"
+    Name = "Client"
   }
 }

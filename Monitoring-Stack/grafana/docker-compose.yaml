@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+     - '3000:3000' # Change  this to your preferred port to 3020
+    volumes:
+      - grafana-storage:/var/lib/grafana
+volumes:
+  grafana-storage: {}
+
+# docker exec 2837bdda79cd sed -i 's/^;http_port = 3000/http_port = 3020/' /usr/share/grafana/conf/config.ini
+# docker exec 2837bdda79cd sed -i 's/^;domain = localhost/domain = 123.123.123.1/' /usr/share/grafana/conf/config.ini
